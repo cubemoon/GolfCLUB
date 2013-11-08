@@ -26,3 +26,50 @@
 //mode
 /*jslint nomen: true*/
 "use strict";
+
+var fs      = require("fs");
+var path    = require("path");
+var express = require("express");
+var routes  = require("./routes");
+
+var app     = express.createServer();
+
+//config for all env
+app.configure(function () {
+    app.set('view engine', 'html');
+    app.set('views', path.join(__dirname, 'views'));
+    app.set("view options", {layout : false});
+    app.register('.html', require('ejs'));
+
+    //middleware
+    app.use(express.logger());
+    app.use(express.bodyParser());
+});
+
+
+var maxAge = 3600000 * 24 * 30;
+var staticDir = path.join(__dirname, 'public');
+
+
+//config for devp env
+app.configure('development', function () {
+    app.use("/public", express.static(staticDir));
+    app.use(express.errorHandler(
+        { showStack : true, dumpException : true }
+    ));
+});
+
+
+//config for production env
+app.configure("production", function () {
+    
+});
+
+
+routes(app);
+
+//launch it!
+app.listen(8088);
+console.log("the app server run at port :8088");
+
+module.exports = app;

@@ -19,20 +19,10 @@
   Created with Sublime Text 2.
   User: yanghua
   Date: 8/11/13
-  Time: 14:32 PM
-  Desc: the url router
+  Time: 14:42 PM
+  Desc: home - the controller of proxy
  */
 
 //mode
-'use strict';
-
-var homeCtrller = require("./controllers/home");
-
-
-module.exports = function (app) {
-
-    app.get("/", homeCtrller.home);
-
-
-
-};
+/*jslint nomen: true*/
+"use strict";

@@ -19,20 +19,21 @@
   Created with Sublime Text 2.
   User: yanghua
   Date: 8/11/13
-  Time: 14:32 PM
-  Desc: the url router
+  Time: 14:42 PM
+  Desc: home - the controller of home
  */
 
 //mode
-'use strict';
+/*jslint nomen: true*/
+"use strict";
 
-var homeCtrller = require("./controllers/home");
-
-
-module.exports = function (app) {
-
-    app.get("/", homeCtrller.home);
-
-
-
+/**
+ * the home entry
+ * @param  {object}   req  the instance of request
+ * @param  {[type]}   res  the instance of response
+ * @param  {Function} next the next handler
+ * @return {null}        
+ */
+exports.home = function (req, res, next) {
+    
 };
