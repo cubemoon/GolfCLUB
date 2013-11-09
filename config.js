@@ -18,21 +18,26 @@
   ---
   Created with Sublime Text 2.
   Date: 8/11/13
-  Time: 14:42 PM
-  Desc: home - the controller of home
+  Time: 14:32 PM
+  Desc: config file  - the server's config file
  */
 
 //mode
 /*jslint nomen: true*/
 "use strict";
 
-/**
- * the home entry
- * @param  {object}   req  the instance of request
- * @param  {[type]}   res  the instance of response
- * @param  {Function} next the next handler
- * @return {null}        
- */
-exports.home = function (req, res, next) {
-    res.render("login.html");
+var path = require("path");
+
+exports.config = {
+    debug               : true,
+    name                : "GOLF CLUB",
+    description         : "GOLF CLUB",
+    version             : "0.0.1",
+
+    site_headers        : [
+        '<meta name="author" content="freedom" />',
+    ],
+
+    site_static_host    : ""
+
 };

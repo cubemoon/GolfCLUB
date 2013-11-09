@@ -2,7 +2,7 @@
   #!/usr/local/bin/node
   -*- coding:utf-8 -*-
  
-  Copyright 2013 yanghua Inc. All Rights Reserved.
+  Copyright 2013 freedom Inc. All Rights Reserved.
  
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
   limitations under the License.
   ---
   Created with Sublime Text 2.
-  User: yanghua
   Date: 8/11/13
   Time: 14:32 PM
   Desc: app - the server
@@ -31,6 +30,8 @@ var fs      = require("fs");
 var path    = require("path");
 var express = require("express");
 var routes  = require("./routes");
+var config  = require("./config").config;
+var Loader  = require("loader");
 
 var app     = express.createServer();
 
@@ -57,6 +58,13 @@ app.configure('development', function () {
     app.use(express.errorHandler(
         { showStack : true, dumpException : true }
     ));
+});
+
+
+//set static, dynamic helpers
+app.helpers({
+    config: config,
+    Loader: Loader
 });
 
 

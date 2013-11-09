@@ -2,7 +2,7 @@
   #!/usr/local/bin/node
   -*- coding:utf-8 -*-
  
-  Copyright 2013 yanghua Inc. All Rights Reserved.
+  Copyright 2013 freedom Inc. All Rights Reserved.
  
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -17,7 +17,6 @@
   limitations under the License.
   ---
   Created with Sublime Text 2.
-  User: yanghua
   Date: 8/11/13
   Time: 14:42 PM
   Desc: home - the controller of proxy
