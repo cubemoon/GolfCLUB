@@ -41,5 +41,5 @@ exports.home = function (req, res, next) {
     }
 
     //test
-    res.render("layout.html");
+    res.render("game/cqticket.html");
 };
