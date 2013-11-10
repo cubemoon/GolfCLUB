@@ -34,5 +34,12 @@
  * @return {null}        
  */
 exports.home = function (req, res, next) {
-    res.render("login.html");
+
+    if (!req.session || !req.session.user) {
+        res.redirect("/");
+        return;
+    }
+
+    //test
+    res.render("layout.html");
 };

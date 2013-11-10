@@ -25,13 +25,16 @@
 //mode
 'use strict';
 
-var homeCtrller = require("./controllers/home");
+var homeCtrller  = require("./controllers/home");
+var loginCtrller = require("./controllers/login");
 
 
 module.exports = function (app) {
 
-    app.get("/", homeCtrller.home);
+    app.get("/", loginCtrller.showLogin);
+    app.get("/home", homeCtrller.home);
 
+    app.post("/signIn", loginCtrller.signIn);
 
 
 };
