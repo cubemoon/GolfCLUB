@@ -38,6 +38,8 @@ exports.config = {
         '<meta name="author" content="freedom" />',
     ],
 
-    site_static_host    : ""
+    site_static_host    : "",
+
+    session_secret      : "GOLF_CLUB_0987654321"
 
 };

@@ -45,6 +45,11 @@ app.configure(function () {
     //middleware
     app.use(express.logger());
     app.use(express.bodyParser());
+
+    app.use(express.cookieParser());
+    app.use(express.session({
+        secret : config.session_secret
+    }));
 });
 
 
