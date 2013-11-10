@@ -15,6 +15,7 @@
         <!-- style -->
         <%- Loader()
                 .css("/public/libs/bootstrap/css/bootstrap.css")
+                .css("/public/stylesheets/layout.css")
                 .done()
         %>
 
@@ -28,73 +29,64 @@
     </head>
     <body>
 
-        <nav class="navbar navbar-default" role="navigation">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Golf CLUB</a>
-          </div>
-
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">首页</a></li>
-              <li><a href="#">会员管理</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">盈亏报表 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">盈亏报表</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">盈亏明细</a></li>
-                </ul>
-              </li>
-              <li><a href="#">游戏记录</a></li>
-            </ul>
-            <form class="navbar-form navbar-left" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">退出</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">设置 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li><a href="#">Separated link</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
-        </nav>
+        <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Golf CLUB</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">首 页</a></li>
+            <li><a href="#member">会员管理</a></li>
+            <li><a href="#report">盈亏报表</a></li>
+            <li><a href="#game">游戏记录</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">YGL 你好</a></li>
+            <li><a href="#">设置</a></li>
+            <li><a href="#">退出</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
 
         <div class="container">
          <div class="row">
             <div class="col-md-3">
                    <div class="well sidebar-nav">
-                       <ul>
-                            <li><a href="#">link</a></li>
-                            <li><a href="#">link</a></li>
-                            <li><a href="#">link</a></li>
-                            <li><a href="#">link</a></li>
-                            <li><a href="#">link</a></li>
-                            <li><a href="#">link</a></li>
-                            <li><a href="#">link</a></li>
-                       </ul>
+                       <h4>qq16888</h4>
+                       <h4>可用分数: <span class="label label-warning">1069.43</span></h4>
+                       <div>
+                          <button type="button" class="btn btn-default">充值提现>></button>
+                       </div>
+                       <h3>游戏彩种</h3>
+                       <div class="btn-group-vertical">
+                          <button type="button" class="btn btn-default">重庆时时彩</button>
+                          <button type="button" class="btn btn-default">新疆时时彩</button>
+                          <button type="button" class="btn btn-default">天津时时彩</button>
+                          <button type="button" class="btn btn-default">排列三</button>
+                          <button type="button" class="btn btn-default">福彩3D</button>
+                          <button type="button" class="btn btn-default">上海乐</button>
+                       </div>
+                        <h3>我的应用</h3>
+                        <div class="btn-group-vertical">
+                          <button type="button" class="btn btn-default">个人资料</button>
+                          <button type="button" class="btn btn-default">提现记录</button>
+                          <button type="button" class="btn btn-default">自动注册</button>
+                          <button type="button" class="btn btn-default">在线客服</button>
+                        </div>
                    </div>
               </div>
               <div class="col-md-9">
-                   <div class="hero-unit">
-                       <h1>Hello world!</h1>
+                   <div class="dashboard">
+                       <%- body %>
                    </div>
               </div>
          </div>
