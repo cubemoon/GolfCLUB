@@ -57,6 +57,12 @@ var maxAge = 3600000 * 24 * 30;
 var staticDir = path.join(__dirname, 'public');
 
 
+//set static, dynamic helpers
+app.helpers({
+    config: config,
+    Loader: Loader
+});
+
 //config for devp env
 app.configure('development', function () {
     app.use("/public", express.static(staticDir));
@@ -64,14 +70,6 @@ app.configure('development', function () {
         { showStack : true, dumpException : true }
     ));
 });
-
-
-//set static, dynamic helpers
-app.helpers({
-    config: config,
-    Loader: Loader
-});
-
 
 //config for production env
 app.configure("production", function () {
