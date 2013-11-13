@@ -1,124 +1,39 @@
 <% layout('layout') -%>
 <div class="page-header">
-    <h1>重庆 <small>时时彩</small></h1>
+  <h1>重庆 <small>时时彩</small></h1>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <ul class="nav nav-pills">
-      <li class="active"><a href="#">四星直选</a></li>
-      <li ><a href="#">三星直选</a></li>
-      <li ><a href="#">三星组选</a></li>
-      <li ><a href="#">二星直选</a></li>
-      <li ><a href="#">二星组选</a></li>
+    <div class="panel_category">
+      <div class="game_category">
+        <span class="category_title">投注玩法:</span>
+      </div>
 
-      <li class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          更多 <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
-          <li ><a href="#">后一直选</a></li>
-          <li ><a href="#">不定位胆</a></li>
-          <li ><a href="#">定位胆</a></li>
-          <li ><a href="#">任选三</a></li>
-        </ul>
-      </li>
-    </ul>
+      <div class="btn-group category_item">
+        <button type="button" class="btn btn-primary">四星直选</button>
+        <button type="button" class="btn btn-default">三星直选</button>
+        <button type="button" class="btn btn-default">三星组选</button>
+        <button type="button" class="btn btn-default">二星直选</button>
+        <button type="button" class="btn btn-default">二星组选</button>
+        <button type="button" class="btn btn-default">后一直选</button>
+        <button type="button" class="btn btn-default">不定位胆</button>
+        <button type="button" class="btn btn-default">定位胆</button>
+      </div>
+    </div>
+    <div class="panel_category">
+      <div class="game_category">
+        <span class="category_title">投注类型:</span>
+      </div>
+      <div class="btn-group category_item">
+        <button type="button" class="btn btn-primary btn-sm">四星直选复式</button>
+        <button type="button" class="btn btn-default btn-sm">四星直选单式</button>
+      </div>
+    </div>
+    
   </div>
   <div class="panel-body">
     <div>
-      投注类型:
-      <span class="label label-primary">四星直选复式</span>
-      <span class="label label-success">四星直选单式</span>
-    </div>
-    <div>
-      <div id="line_1" class="line">
-        <ul>
-          <li><a class="digit" href="#">千位</a></li>
-          <li><a class="number" href="#">0</a></li>
-          <li><a class="number" href="#">1</a></li>
-          <li><a class="number" href="#">2</a></li>
-          <li><a class="number" href="#">3</a></li>
-          <li><a class="number" href="#">4</a></li>
-          <li><a class="number" href="#">5</a></li>
-          <li><a class="number" href="#">6</a></li>
-          <li><a class="number" href="#">7</a></li>
-          <li><a class="number" href="#">8</a></li>
-          <li><a class="number" href="#">9</a></li>
-
-          <li><a class="char" href="#">全</a></li>
-          <li><a class="char" href="#">大</a></li>
-          <li><a class="char" href="#">小</a></li>
-          <li><a class="char" href="#">单</a></li>
-          <li><a class="char" href="#">双</a></li>
-          <li><a class="char" href="#">清</a></li>
-        </ul>
-      </div>
-      <div id="line_1" class="line">
-        <ul>
-          <li><a class="digit" href="#">百位</a></li>
-          <li><a class="number" href="#">0</a></li>
-          <li><a class="number" href="#">1</a></li>
-          <li><a class="number" href="#">2</a></li>
-          <li><a class="number" href="#">3</a></li>
-          <li><a class="number" href="#">4</a></li>
-          <li><a class="number" href="#">5</a></li>
-          <li><a class="number" href="#">6</a></li>
-          <li><a class="number" href="#">7</a></li>
-          <li><a class="number" href="#">8</a></li>
-          <li><a class="number" href="#">9</a></li>
-
-          <li><a class="char" href="#">全</a></li>
-          <li><a class="char" href="#">大</a></li>
-          <li><a class="char" href="#">小</a></li>
-          <li><a class="char" href="#">单</a></li>
-          <li><a class="char" href="#">双</a></li>
-          <li><a class="char" href="#">清</a></li>
-        </ul>
-      </div>
-      <div id="line_1" class="line">
-        <ul>
-          <li><a class="digit" href="#">十位</a></li>
-          <li><a class="number" href="#">0</a></li>
-          <li><a class="number" href="#">1</a></li>
-          <li><a class="number" href="#">2</a></li>
-          <li><a class="number" href="#">3</a></li>
-          <li><a class="number" href="#">4</a></li>
-          <li><a class="number" href="#">5</a></li>
-          <li><a class="number" href="#">6</a></li>
-          <li><a class="number" href="#">7</a></li>
-          <li><a class="number" href="#">8</a></li>
-          <li><a class="number" href="#">9</a></li>
-
-          <li><a class="char" href="#">全</a></li>
-          <li><a class="char" href="#">大</a></li>
-          <li><a class="char" href="#">小</a></li>
-          <li><a class="char" href="#">单</a></li>
-          <li><a class="char" href="#">双</a></li>
-          <li><a class="char" href="#">清</a></li>
-        </ul>
-      </div>
-      <div id="line_1" class="line">
-        <ul>
-          <li><a class="digit" href="#">个位</a></li>
-          <li><a class="number" href="#">0</a></li>
-          <li><a class="number" href="#">1</a></li>
-          <li><a class="number" href="#">2</a></li>
-          <li><a class="number" href="#">3</a></li>
-          <li><a class="number" href="#">4</a></li>
-          <li><a class="number" href="#">5</a></li>
-          <li><a class="number" href="#">6</a></li>
-          <li><a class="number" href="#">7</a></li>
-          <li><a class="number" href="#">8</a></li>
-          <li><a class="number" href="#">9</a></li>
-
-          <li><a class="char" href="#">全</a></li>
-          <li><a class="char" href="#">大</a></li>
-          <li><a class="char" href="#">小</a></li>
-          <li><a class="char" href="#">单</a></li>
-          <li><a class="char" href="#">双</a></li>
-          <li><a class="char" href="#">清</a></li>
-        </ul>
-      </div>
+      <%- partial('component/dashboard') %>
       <div>
         <span class="span_remark">您选择了0注, 总金额: <span>0</span>元。 </span>
       </div>
