@@ -1,0 +1,35 @@
+/*
+ game css
+ */
+.panel_category {
+  height: 35px;
+  background-color: white;
+}
+.category_title {
+  font-weight: bold;
+  font-size: 15px;
+}
+.panel-heading .game_category {
+  padding-left: 10px;
+  padding-top: 6px;
+  float: left;
+  width: 12%;
+  height: 100%;
+  background-color: white;
+}
+.panel_category .category_item {
+  /*padding-top: 5px;*/
+  /*float: right;*/
+  overflow: hidden;
+  /*width: 87%;*/
+  /*background-color: black;*/
+}
+/*.panel_category > ul {
+  margin-bottom: 0;
+  list-style: none;
+}
+.panel_category > ul > li {
+  float: left;
+  position: relative;
+  display: block;
+}*/
