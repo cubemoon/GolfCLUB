@@ -109,6 +109,9 @@ body {
   background-color: transparent !important;
 }
 /* ---------------------------------------------- */
+.glyphicons_right {
+  float: right;
+}
 .dashboard {
   border: 1px solid #e3e3e3;
 }
