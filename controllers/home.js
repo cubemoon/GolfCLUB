@@ -43,3 +43,64 @@ exports.home = function (req, res, next) {
     //test
     res.render("game/cqticket.html");
 };
+
+
+exports.cqticket = function (req, res, next) {
+  if (!req.session || !req.session.user) {
+        res.redirect("/");
+        return;
+    }
+
+    //test
+    res.render("game/cqticket.html");
+};
+
+exports.xjticket = function (req, res, next) {
+  if (!req.session || !req.session.user) {
+        res.redirect("/");
+        return;
+    }
+
+    //test
+    res.render("game/xjticket.html");
+};
+
+exports.tjticket = function (req, res, next) {
+  if (!req.session || !req.session.user) {
+        res.redirect("/");
+        return;
+    }
+
+    //test
+    res.render("game/tjticket.html");
+};
+
+exports.fucai3D = function (req, res, next) {
+  if (!req.session || !req.session.user) {
+        res.redirect("/");
+        return;
+    }
+
+    //test
+    res.render("game/fucai3D.html");
+};
+
+exports.array3 = function (req, res, next) {
+  if (!req.session || !req.session.user) {
+        res.redirect("/");
+        return;
+    }
+
+    //test
+    res.render("game/array3.html");
+};
+
+exports.shanghaile = function (req, res, next) {
+  if (!req.session || !req.session.user) {
+        res.redirect("/");
+        return;
+    }
+
+    //test
+    res.render("game/shanghaile.html");
+};
