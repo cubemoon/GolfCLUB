@@ -2,3 +2,40 @@
 <div class="page-header">
   <h1>排列三</h1>
 </div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <div class="panel_category">
+      <div class="game_category">
+        <span class="category_title">投注玩法:</span>
+      </div>
+      <div class="btn-group category_item">
+        <button type="button" class="btn btn-primary">四星直选</button>
+        <button type="button" class="btn btn-default">三星直选</button>
+        <button type="button" class="btn btn-default">三星组选</button>
+        <button type="button" class="btn btn-default">二星直选</button>
+        <button type="button" class="btn btn-default">二星组选</button>
+        <button type="button" class="btn btn-default">后一直选</button>
+        <button type="button" class="btn btn-default">不定位胆</button>
+        <button type="button" class="btn btn-default">定位胆</button>
+      </div>
+    </div>
+    <div class="panel_category">
+      <div class="game_category">
+        <span class="category_title">投注类型:</span>
+      </div>
+      <div class="btn-group category_item">
+        <button type="button" class="btn btn-primary btn-sm">四星直选复式</button>
+        <button type="button" class="btn btn-default btn-sm">四星直选单式</button>
+      </div>
+    </div>
+  </div>
+  <div class="panel-body">
+    <div>
+      <%- partial('component/dashboard') %>
+      <div>
+        <span class="span_remark">您选择了0注, 总金额: <span>0</span>元。 </span>
+      </div>
+    </div>
+  </div>
+  <%- partial("component/gameList") %>
+</div>
