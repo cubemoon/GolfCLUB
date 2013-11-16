@@ -43,6 +43,7 @@ app.configure(function () {
     app.register('.html', require('ejs'));
 
     //middleware
+    app.use(express.favicon());
     app.use(express.logger());
     app.use(express.bodyParser());
 
@@ -73,14 +74,16 @@ app.configure('development', function () {
 
 //config for production env
 app.configure("production", function () {
-    
+    app.use('/public', express.static(staticDir, { maxAge: maxAge }));
+    app.use(express.errorHandler());
+    app.set('view cache', true);
 });
 
 
 routes(app);
 
 //launch it!
-app.listen(8088);
-console.log("the app server run at port :8088");
+app.listen(8080);
+console.log("the app server run at port :8080");
 
 module.exports = app;
