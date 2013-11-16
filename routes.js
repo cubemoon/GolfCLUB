@@ -33,8 +33,14 @@ module.exports = function (app) {
 
     app.get("/", loginCtrller.showLogin);
     app.get("/home", homeCtrller.home);
-
+    app.get("/captchaImg", loginCtrller.captchaImg);
     app.post("/signIn", loginCtrller.signIn);
 
+    app.get("/game/cqticket", homeCtrller.cqticket);
+    app.get("/game/fucai3D", homeCtrller.fucai3D);
+    app.get("/game/tjticket", homeCtrller.tjticket);
+    app.get("/game/xjticket", homeCtrller.xjticket);
+    app.get("/game/array3", homeCtrller.array3);
+    app.get("/game/shanghaile", homeCtrller.shanghaile);
 
 };
