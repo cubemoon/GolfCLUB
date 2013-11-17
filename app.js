@@ -45,11 +45,15 @@ app.configure(function () {
     //middleware
     app.use(express.favicon());
     app.use(express.logger());
+    app.use(express.query());
     app.use(express.bodyParser());
 
     app.use(express.cookieParser());
     app.use(express.session({
-        secret : config.session_secret
+        secret : config.session_secret,
+        cookie : {
+            maxAge  : 20 * 60 * 1000      //ms
+        }
     }));
 });
 
