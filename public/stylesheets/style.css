@@ -1,6 +1,4 @@
 /*
-  base
- */
 #main p a {
   white-space: nowrap;
   max-width: 600px;
@@ -768,4 +766,4 @@ textarea.editor {
 .reply_content table tr th>:last-child,
 .reply_content table tr td>:last-child {
   margin-bottom:0;
-}
+}*/
