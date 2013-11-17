@@ -25,8 +25,16 @@
 //mode
 'use strict';
 
-var homeCtrller  = require("./controllers/home");
-var loginCtrller = require("./controllers/login");
+var homeCtrller   = require("./controllers/home");
+var loginCtrller  = require("./controllers/login");
+var logoutCtrller = require("./controllers/logout");
+
+var cqticketCtrller   = require("./controllers/game/cqticket");
+var array3Ctrller     = require("./controllers/game/array3");
+var fucai3DCtrller    =  require("./controllers/game/fucai3D");
+var shanghaileCtrller = require("./controllers/game/shanghaile");
+var tjticketCtrller   = require("./controllers/game/tjticket");
+var xjticketCtrller   = require("./controllers/game/xjticket");
 
 
 module.exports = function (app) {
@@ -34,13 +42,18 @@ module.exports = function (app) {
     app.get("/", loginCtrller.showLogin);
     app.get("/home", homeCtrller.home);
     app.get("/captchaImg", loginCtrller.captchaImg);
-    app.post("/signIn", loginCtrller.signIn);
+    app.post("/signin", loginCtrller.signIn);
+    app.get("/signout", logoutCtrller.signOut);
 
-    app.get("/game/cqticket", homeCtrller.cqticket);
-    app.get("/game/fucai3D", homeCtrller.fucai3D);
-    app.get("/game/tjticket", homeCtrller.tjticket);
-    app.get("/game/xjticket", homeCtrller.xjticket);
-    app.get("/game/array3", homeCtrller.array3);
-    app.get("/game/shanghaile", homeCtrller.shanghaile);
+    app.get("/game/cqticket", cqticketCtrller.cqticket);
+    app.get("/game/fucai3D", fucai3DCtrller.fucai3D);
+    app.get("/game/tjticket", tjticketCtrller.tjticket);
+    app.get("/game/xjticket", xjticketCtrller.xjticket);
+    app.get("/game/array3", array3Ctrller.array3);
+    app.get("/game/shanghaile", shanghaileCtrller.shanghaile);
+
+
+    /*--------------------ajax request-----------------*/
+    app.get("/game/cqticket/category", cqticketCtrller.category);
 
 };
