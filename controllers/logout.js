@@ -34,5 +34,6 @@
  * @return {null}        
  */
 exports.signOut = function (req, res, next) {
-    // req.session.
+    req.session.destroy();
+    res.redirect("/");
 }
