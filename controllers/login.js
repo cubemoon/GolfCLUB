@@ -26,7 +26,9 @@
 /*jslint nomen: true*/
 "use strict";
 
-var captchagen   = require('captchagen');
+var captchagen = require('captchagen');
+var check      = require("validator").check;
+var sanitize   = require("validator").sanitize;
 
 /**
  * show login page
@@ -48,6 +50,13 @@ exports.showLogin = function (req, res, next) {
  */
 exports.signIn = function (req, res, next) {
     var captchaCode = req.body.auth.captchaCode || "";
+
+    try {
+        check(captchaCode).notEmpty();
+        captchaCode = sanitize(sanitize(captchaCode).trim()).xss();
+    } catch (e) {
+        return res.redirect("/");
+    }
 
     if (!req.session || !req.session.captchaCode
           || captchaCode.length === 0  || 
