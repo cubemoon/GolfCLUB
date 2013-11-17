@@ -17,19 +17,6 @@
   height: 100%;
   background-color: white;
 }
-.panel_category .category_item {
-  /*padding-top: 5px;*/
-  /*float: right;*/
-  overflow: hidden;
-  /*width: 87%;*/
-  /*background-color: black;*/
+.nonDisplay {
+  display: none;
 }
-/*.panel_category > ul {
-  margin-bottom: 0;
-  list-style: none;
-}
-.panel_category > ul > li {
-  float: left;
-  position: relative;
-  display: block;
-}*/
