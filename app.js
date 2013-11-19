@@ -26,12 +26,13 @@
 /*jslint nomen: true*/
 "use strict";
 
-var fs      = require("fs");
-var path    = require("path");
-var express = require("express");
-var routes  = require("./routes");
-var config  = require("./config").config;
-var Loader  = require("loader");
+var fs          = require("fs");
+var path        = require("path");
+var express     = require("express");
+var routes      = require("./routes");
+var config      = require("./config").config;
+var Loader      = require("loader");
+var initializer = require("./controllers/core/initializer");
 
 var app     = express.createServer();
 
@@ -83,11 +84,16 @@ app.configure("production", function () {
     app.set('view cache', true);
 });
 
-
 routes(app);
 
-//launch it!
-app.listen(8080);
-console.log("the app server run at port :8080");
+//get basic data
+initializer.initAPPBasicData(function() {
+    //launch it!
+    app.listen(8080);
+    console.log("the app server run at port :8080");
 
-module.exports = app;
+    module.exports = app;
+    console.log(CATEGORYLIST);
+    console.log(TYPELIST);
+    console.log(TYPEDETAILLIST);
+});
