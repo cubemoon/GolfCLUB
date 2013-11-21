@@ -1,4 +1,6 @@
 <% layout('layout') -%>
+<!-- script -->
+<%- Loader().js("/public/javascripts/game.js").done() %>
 <div class="page-header">
   <h1>新疆 <small>时时彩</small></h1>
 </div>
@@ -8,25 +10,38 @@
       <div class="game_category">
         <span class="category_title">投注玩法:</span>
       </div>
-      <div class="btn-group category_item">
-        <button type="button" class="btn btn-primary">四星直选</button>
-        <button type="button" class="btn btn-default">三星直选</button>
-        <button type="button" class="btn btn-default">三星组选</button>
-        <button type="button" class="btn btn-default">二星直选</button>
-        <button type="button" class="btn btn-default">二星组选</button>
-        <button type="button" class="btn btn-default">后一直选</button>
-        <button type="button" class="btn btn-default">不定位胆</button>
-        <button type="button" class="btn btn-default">定位胆</button>
+      <div id="category" class="btn-group">
+        <%
+            var categoryList = locals.categoryList || [];
+            for(var i = 0; i < categoryList.length; i++) {
+        %>
+              <button id="category_<%= categoryList[i].PlayId %>" type="button" class="btn btn-default"><%= categoryList[i].PlayName %>
+              </button>
+        <%      
+          }
+        %>
       </div>
     </div>
     <div class="panel_category">
       <div class="game_category">
         <span class="category_title">投注类型:</span>
       </div>
-      <div class="btn-group category_item">
-        <button type="button" class="btn btn-primary btn-sm">四星直选复式</button>
-        <button type="button" class="btn btn-default btn-sm">四星直选单式</button>
-      </div>
+      <%
+          var subCategoryList = locals.subCategoryList || [];
+          var i = 0;
+          for(i = 0; i < subCategoryList.length; i++) {
+            if(i === 0) {
+      %>
+              <div id="sub_category_<%= categoryList[i].PlayId %>" class="btn-group">
+      <%    } else {    %>
+              <div id="sub_category_<%= categoryList[i].PlayId %>" class="btn-group nonDisplay">
+      <%    }           %>
+      <%    for(var j = 0; j < subCategoryList[i].length; j++) {  %>
+      
+                <button id="sub_category_<%= categoryList[i].PlayId %>_<%= subCategoryList[i][j].PlayInfoId %>" type="button" class="btn btn-default btn-sm"><%= subCategoryList[i][j].PlayInfoName %></button>
+      <%    }           %>
+            </div>
+      <%  }             %>
     </div>
   </div>
   <div class="panel-body">
@@ -37,5 +52,6 @@
       </div>
     </div>
   </div>
+  
   <%- partial("component/gameList") %>
 </div>
