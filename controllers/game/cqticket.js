@@ -26,6 +26,10 @@
 /*jslint nomen: true*/
 "use strict";
 
+var coreDataHandler = require("../core/coreDataHandler");
+var apiInfo         = require("../../docs/apis").APIInfo;
+var EventProxy      = require("eventproxy");
+
 /**
  * the main request for chong qing ticket
  * @param  {object}   req  the instance of request
@@ -34,108 +38,37 @@
  * @return {null}        
  */
 exports.cqticket = function (req, res, next) {
-  if (!req.session || !req.session.user) {
+    if (!req.session || !req.session.user) {
         res.redirect("/");
         return;
     }
 
-    var categoryList    = category();
-    var subCategoryList = subCategory();
+    var categoryList    = [];
+    var subCategoryList = [];
 
-    console.log(subCategoryList);
+    var ep = EventProxy.create();
 
-    res.render("game/cqticket.html", { 
-        categoryList    : categoryList,
-        subCategoryList : subCategoryList
+    coreDataHandler.getPlayTypeList(apiInfo.shishicaiPlayTypeStr.split(",") , function (playTypeList) {
+        categoryList = playTypeList;
+        ep.emitLater("after_getCategory");
+    })
+
+    ep.once("after_getCategory", function() {
+        for (var i = 0; i < categoryList.length; i++) {
+            subCategoryList.push(coreDataHandler.getPlayTypeDetail(categoryList[i].PlayId));
+        }
+        ep.emitLater("after_getSubCategory");
+    });
+
+    ep.once("after_getSubCategory", function() {
+        ep.emitLater("complete");
+    });
+
+    ep.once("complete", function() {
+
+        res.render("game/cqticket.html", { 
+            categoryList    : categoryList,
+            subCategoryList : subCategoryList
+        });
     });
 };
-
-/**
- * get category for chong qing ticket
- * @return {array} the array of category
- */
-function category () {
-    var categoryList = [
-        "四星直选",
-        "三星直选",
-        "三星组选",
-        "二星直选",
-        "二星组选",
-        "后一直选",
-        "不定位胆",
-        "定位胆"
-    ];
-
-    return categoryList;
-};
-
-/**
- * config sub category for chong qing ticket
- * @return {array} the array of sub category
- */
-function subCategory () {
-    var subCategoryList = [
-        {
-            items   : [
-                "四星直选复式",
-                "四星直选单式"
-            ]
-        },
-        {
-            items   : [
-                "后三直选复式",
-                "后三直选单式",
-                "中三直选复式",
-                "中三直选单式",
-                "前三直选复式",
-                "前三直选单式"
-            ]
-        },
-        {
-            items   : [
-                "后三组选组六",
-                "后三组选组三",
-                "后三组选混合",
-                "前三组选组六",
-                "前三组选组三",
-                "前三组选混合"
-            ]
-        },
-        {
-            items   : [
-                "后二直选复式",
-                "后二直选单式",
-                "前二直选复式",
-                "前二直选单式"
-            ]
-        },
-        {
-            items   : [
-                "后二组选组二",
-                "后二组选混合",
-                "前二组选组二",
-                "前二组选混合"
-            ]
-        },
-        {
-            items   : [
-                "后一直选复式"
-            ]
-        },
-        {
-            items   : [
-                "后三不定位胆",
-                "前三不定位但",
-                "五星不定位胆"
-            ]
-        },
-        {
-            items   : [
-                "五星定位胆"
-            ]
-        }
-    ];
-
-
-    return subCategoryList;
-}
