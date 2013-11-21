@@ -28,6 +28,7 @@
 var homeCtrller   = require("./controllers/home");
 var loginCtrller  = require("./controllers/login");
 var logoutCtrller = require("./controllers/logout");
+var errorHandler  = require("./controllers/error");
 
 var cqticketCtrller   = require("./controllers/game/cqticket");
 var array3Ctrller     = require("./controllers/game/array3");
@@ -35,6 +36,7 @@ var fucai3DCtrller    =  require("./controllers/game/fucai3D");
 var shanghaileCtrller = require("./controllers/game/shanghaile");
 var tjticketCtrller   = require("./controllers/game/tjticket");
 var xjticketCtrller   = require("./controllers/game/xjticket");
+
 
 
 module.exports = function (app) {
@@ -55,5 +57,8 @@ module.exports = function (app) {
 
     /*--------------------ajax request-----------------*/
     app.get("/game/cqticket/category", cqticketCtrller.category);
+
+
+    app.get("*", errorHandler.foureOfour);
 
 };
