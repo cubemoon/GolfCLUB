@@ -93,7 +93,7 @@ initializer.initAPPBasicData(function() {
     console.log("the app server run at port :8080");
 
     module.exports = app;
-    console.log(CATEGORYLIST);
-    console.log(TYPELIST);
-    console.log(TYPEDETAILLIST);
+    // console.log(CATEGORYLIST);
+    // console.log(TYPELIST);
+    // console.log(TYPEDETAILLIST);
 });

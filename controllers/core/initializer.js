@@ -60,7 +60,7 @@ exports.initAPPBasicData = function (callback) {
             callback();
         }
     });
-}
+};
 
 /**
  * get play category from remote service
@@ -166,3 +166,5 @@ function getPlayTypeDetail (callback) {
 
     req.end();
 };
+
+
