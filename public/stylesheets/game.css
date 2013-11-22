@@ -20,3 +20,6 @@
 .nonDisplay {
   display: none;
 }
+.isDisplay {
+  display: block;
+}
