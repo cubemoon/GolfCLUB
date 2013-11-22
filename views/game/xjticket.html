@@ -6,7 +6,7 @@
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <div class="panel_category">
+    <div id="div_category_container" class="panel_category">
       <div class="game_category">
         <span class="category_title">投注玩法:</span>
       </div>
@@ -15,14 +15,14 @@
             var categoryList = locals.categoryList || [];
             for(var i = 0; i < categoryList.length; i++) {
         %>
-              <button id="category_<%= categoryList[i].PlayId %>" type="button" class="btn btn-default"><%= categoryList[i].PlayName %>
+              <button id="category_<%= categoryList[i].PlayId %>" playid="<%= categoryList[i].PlayId %>" type="button" class="btn btn-default"><%= categoryList[i].PlayName %>
               </button>
         <%      
           }
         %>
       </div>
     </div>
-    <div class="panel_category">
+    <div id="div_subCategory_container" class="panel_category">
       <div class="game_category">
         <span class="category_title">投注类型:</span>
       </div>
@@ -32,13 +32,13 @@
           for(i = 0; i < subCategoryList.length; i++) {
             if(i === 0) {
       %>
-              <div id="sub_category_<%= categoryList[i].PlayId %>" class="btn-group">
+              <div id="sub_category_<%= categoryList[i].PlayId %>" playid="<%= categoryList[i].PlayId %>" class="btn-group isDisplay">
       <%    } else {    %>
-              <div id="sub_category_<%= categoryList[i].PlayId %>" class="btn-group nonDisplay">
+              <div id="sub_category_<%= categoryList[i].PlayId %>" playid="<%= categoryList[i].PlayId %>" class="btn-group nonDisplay">
       <%    }           %>
       <%    for(var j = 0; j < subCategoryList[i].length; j++) {  %>
       
-                <button id="sub_category_<%= categoryList[i].PlayId %>_<%= subCategoryList[i][j].PlayInfoId %>" type="button" class="btn btn-default btn-sm"><%= subCategoryList[i][j].PlayInfoName %></button>
+                <button id="sub_category_<%= categoryList[i].PlayId %>_<%= subCategoryList[i][j].PlayInfoId %>" playinfoid="<%= subCategoryList[i][j].PlayInfoId %>" type="button" class="btn btn-default btn-sm"><%= subCategoryList[i][j].PlayInfoName %></button>
       <%    }           %>
             </div>
       <%  }             %>
