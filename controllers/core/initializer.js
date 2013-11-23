@@ -39,18 +39,21 @@ exports.initAPPBasicData = function (callback) {
 
     var ep = EventProxy.create();
 
-    getPlayGategory(function () {
+    getRemoteDataWithUrl(apiInfo["category"], function (jsonObj) {
+        global.CATEGORYLIST = jsonObj;
         ep.emitLater("after_getPlayGategory");
     })
 
     ep.once("after_getPlayGategory", function() {
-        getPlayType(function() {
+        getRemoteDataWithUrl(apiInfo["type"], function (jsonObj) {
+            global.TYPELIST = jsonObj;
             ep.emitLater("after_getPlayType");
         });
     });
 
     ep.once("after_getPlayType", function() {
-        getPlayTypeDetail(function() {
+        getRemoteDataWithUrl(apiInfo["typeDetail"], function (jsonObj) {
+            global.TYPEDETAILLIST = jsonObj;
             ep.emitLater("after_complete");
         });
     });
@@ -63,15 +66,14 @@ exports.initAPPBasicData = function (callback) {
 };
 
 /**
- * get play category from remote service
- * @param {Function} callback the callback func
- * @return {null} 
+ * get remote data with url
+ * @param  {string}   path     the url path
+ * @param  {Function} callback the callback func
+ * @return {null}            
  */
-function getPlayGategory (callback) {
-    var url = apiInfo["category"] || "";
-
+function getRemoteDataWithUrl(path, callback) {
+    var url = path || "";
     if (url.length === 0) {
-        console.log("error");
         return;
     }
 
@@ -88,83 +90,10 @@ function getPlayGategory (callback) {
         res.on('data',function(chunk){
             data += chunk;
         }).on('end', function(){
-            var categoryJSONObj = JSON.parse(JSON.parse(data));
-            global.CATEGORYLIST = categoryJSONObj;
-            callback();
+            var jsonObj = JSON.parse(JSON.parse(data));
+            callback(jsonObj);
         });
     });
 
     req.end();
-};
-
-/**
- * get play type from remote service
- * @param {Function} callback the callback func
- * @return {null} 
- */
-function getPlayType (callback) {
-    var url = apiInfo["type"] || "";
-
-    if (url.length === 0) {
-        console.log("error");
-        return;
-    }
-
-    var data = "";
-
-    var options = {
-        hostname  : apiInfo["host"],
-        port      : apiInfo["port"],
-        path      : url,
-        method    : 'GET'
-    };
-
-    var req = http.request(options, function (res) {
-        res.on('data',function(chunk){
-            data += chunk;
-        }).on('end', function(){
-            var typeJSONObj = JSON.parse(JSON.parse(data));
-            global.TYPELIST = typeJSONObj;
-            callback();
-        });
-    });
-
-    req.end();
-};
-
-/**
- * get play type detail from remote service
- * @param {Function} callback the callback func
- * @return {null} 
- */
-function getPlayTypeDetail (callback) {
-    var url = apiInfo["typeDetail"] || "";
-
-    if (url.length === 0) {
-        console.log("error");
-        return;
-    }
-
-    var data = "";
-
-    var options = {
-        hostname    : apiInfo["host"],
-        port        : apiInfo["port"],
-        path        : url,
-        method      : 'GET'
-    };
-
-    var req = http.request(options, function (res) {
-        res.on('data',function(chunk){
-            data += chunk;
-        }).on('end', function(){
-            var typeDetailJSONObj = JSON.parse(JSON.parse(data));
-            global.TYPEDETAILLIST = typeDetailJSONObj;
-            callback();
-        });
-    });
-
-    req.end();
-};
-
-
+}

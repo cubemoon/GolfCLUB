@@ -2,42 +2,22 @@
 <!-- script -->
 <%- Loader().js("/public/javascripts/game.js").done() %>
 <div>
-  <h1>福彩3D <small>时时彩</small></h1>
+  <h1>福彩 <small>3D</small></h1>
 </div>
 <div class="panel panel-default">
   <div class="panel-heading">
-    <div class="panel_category">
-      <div class="game_category">
-        <span class="category_title">投注玩法:</span>
-      </div>
-      <div id="category" class="btn-group category_item">
-        <button id="category_one" type="button" class="btn btn-primary">四星直选</button>
-        <button id="category_two" type="button" class="btn btn-default">三星直选</button>
-        <button id="category_three" type="button" class="btn btn-default">三星组选</button>
-        <button id="category_four" type="button" class="btn btn-default">二星直选</button>
-        <button id="category_five" type="button" class="btn btn-default">二星组选</button>
-        <button id="category_six" type="button" class="btn btn-default">后一直选</button>
-        <button id="category_seven" type="button" class="btn btn-default">不定位胆</button>
-        <button id="category_eight" type="button" class="btn btn-default">定位胆</button>
-      </div>
-    </div>
-    <div class="panel_category">
-      <div class="game_category">
-        <span class="category_title">投注类型:</span>
-      </div>
-      <div id="sub_category" class="btn-group category_item">
-        <button id="sub_category_one" type="button" class="btn btn-primary btn-sm">四星直选复式</button>
-        <button id="sub_category_two" type="button" class="btn btn-default btn-sm">四星直选单式</button>
-      </div>
-    </div>
+    <%- partial("component/categoryZone") %>
   </div>
   <div class="panel-body">
-    <div>
-      <%- partial('component/dashboard') %>
-      <div>
-        <span class="span_remark">您选择了0注, 总金额: <span>0</span>元。 </span>
+      <div id="div_dashborad">
+        <%- partial('component/dashboard') %>
       </div>
-    </div>
+      <div id="total">
+        <%- partial("component/total") %>
+      </div>  
+      <div id="div_operateZone">
+        <%- partial("component/operateZone") %>
+      </div>
   </div>
   <%- partial("component/gameList") %>
 </div>

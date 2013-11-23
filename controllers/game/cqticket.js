@@ -39,8 +39,7 @@ var EventProxy      = require("eventproxy");
  */
 exports.cqticket = function (req, res, next) {
     if (!req.session || !req.session.user) {
-        res.redirect("/");
-        return;
+        return res.redirect("/");
     }
 
     var categoryList    = [];
@@ -66,7 +65,7 @@ exports.cqticket = function (req, res, next) {
 
     ep.once("complete", function() {
 
-        res.render("game/cqticket.html", { 
+        res.render("game/cqticket", { 
             categoryList    : categoryList,
             subCategoryList : subCategoryList
         });

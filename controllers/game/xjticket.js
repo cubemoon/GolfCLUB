@@ -39,8 +39,7 @@ var EventProxy      = require("eventproxy");
  */
 exports.xjticket = function (req, res, next) {
     if (!req.session || !req.session.user) {
-        res.redirect("/");
-        return;
+        return res.redirect("/");
     }
 
     var categoryList    = [];
@@ -65,7 +64,7 @@ exports.xjticket = function (req, res, next) {
     });
 
     ep.once("complete", function() {
-        res.render("game/xjticket.html", { 
+        res.render("game/xjticket", { 
             categoryList    : categoryList,
             subCategoryList : subCategoryList
         });

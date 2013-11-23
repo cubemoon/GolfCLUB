@@ -1,6 +1,11 @@
 /*
  game css
  */
+/*---------------------------------- dashboard zone --------------------------*/
+#div_dashborad {
+  float: left;
+  width: 100%;
+}
 .panel_category {
   height: 35px;
   background-color: white;
@@ -23,3 +28,82 @@
 .isDisplay {
   display: block;
 }
+/*---------------------------------- dashboard zone end--------------------------*/
+
+/*---------------------------------- total zone --------------------------*/
+#total {
+  width: 100%;
+  float: left;
+  height: 40px;
+}
+#total > p {
+  margin-left: 270px;
+  margin-top: 10px;
+}
+#total > p > .span_remark {
+  font-size: 16px;
+}
+.span_highlight {
+  font-weight: bold;
+  color: red;
+}
+#rebate {
+  font-weight: bolder;
+  font-size: 16px;
+}
+/*---------------------------------- total zone end ----------------------*/
+
+/*---------------------------------- operate zone ------------------------*/
+#div_operateZone {
+  float: left;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  width: 100%;
+  height: 150px;
+}
+#operate_left {
+  float:left; 
+  width:15%; 
+  height:100%;
+}
+#operate_left > p {
+  text-align:right; 
+  margin-top:68px; 
+  margin-right:5px;
+}
+#operate_left > p > span {
+  font-size:18px;
+}
+#operate_middle {
+  border: 1px solid #e3e3e3;
+  float:left; 
+  width:68%; 
+  height:100%;
+}
+#div_btnGroup {
+  float: right;
+  margin-top: 2px;
+}
+#div_betting_input {
+  clear:both; 
+  float: left;
+  margin-top: 4px;
+  width:100%; 
+  height:113px; 
+  background-color:white;
+  border: 1px solid #e3e3e3;
+}
+#div_betting_input > .numLbl {
+  font-size: 14px;
+}
+#operate_right {
+  float:left; 
+  width:17%; 
+  height:150px; 
+  text-align:center;
+}
+#operate_right > p {
+  margin-top:65px;
+}
+/*---------------------------------- operate zone end ------------------------*/

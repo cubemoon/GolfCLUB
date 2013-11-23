@@ -26,6 +26,10 @@
 /*jslint nomen: true*/
 "use strict";
 
+var coreDataHandler = require("../core/coreDataHandler");
+var apiInfo         = require("../../docs/apis").APIInfo;
+var EventProxy      = require("eventproxy");
+
 /**
  * the main request for shang hai le
  * @param  {object}   req  the instance of request
@@ -34,10 +38,37 @@
  * @return {null}        
  */
 exports.shanghaile = function (req, res, next) {
-  if (!req.session || !req.session.user) {
-        res.redirect("/");
-        return;
+    if (!req.session || !req.session.user) {
+        return res.redirect("/");
     }
 
-    res.render("game/shanghaile.html");
+    var categoryList    = [];
+    var subCategoryList = [];
+
+    var ep = EventProxy.create();
+
+    coreDataHandler.getPlayTypeList(apiInfo.shlePlayTypeStr.split(",") , function (playTypeList) {
+        categoryList = playTypeList;
+        ep.emitLater("after_getCategory");
+    })
+
+    ep.once("after_getCategory", function() {
+        for (var i = 0; i < categoryList.length; i++) {
+            subCategoryList.push(coreDataHandler.getPlayTypeDetail(categoryList[i].PlayId));
+        }
+        ep.emitLater("after_getSubCategory");
+    });
+
+    ep.once("after_getSubCategory", function() {
+        ep.emitLater("complete");
+    });
+
+    ep.once("complete", function() {
+
+        res.render("game/shanghaile", { 
+            categoryList    : categoryList,
+            subCategoryList : subCategoryList
+        });
+    });
+
 };
