@@ -50,18 +50,28 @@ exports.showLogin = function (req, res, next) {
  */
 exports.signIn = function (req, res, next) {
     var captchaCode = req.body.auth.captchaCode || "";
+    var userId      = req.body.auth.userId || "";
+    var passwd      = req.body.auth.passwd || "";
+
+    console.log(captchaCode);
+    console.log(userId);
+    console.log(passwd);
 
     try {
         check(captchaCode).notEmpty();
+        check(userId).notEmpty();
+        check(passwd).notEmpty();
         captchaCode = sanitize(sanitize(captchaCode).trim()).xss();
+        userId      = sanitize(sanitize(userId).trim()).xss();
+        passwd      = sanitize(sanitize(passwd).trim()).xss();
     } catch (e) {
-        return res.redirect("/");
+        return res.send("5");
     }
 
     if (!req.session || !req.session.captchaCode
           || captchaCode.length === 0  || 
        captchaCode != req.session.captchaCode) {
-        return res.redirect("/");
+        return res.send("4");
     }
 
     //simulate user login 
@@ -69,7 +79,7 @@ exports.signIn = function (req, res, next) {
     user["userId"]   = "ygl_001";
     req.session.user = user;
 
-    res.redirect("/home");
+    return res.send("1");
 };
 
 /**

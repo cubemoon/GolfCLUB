@@ -41,7 +41,8 @@ var xjticketCtrller   = require("./controllers/game/xjticket");
 
 module.exports = function (app) {
 
-    app.get("/", loginCtrller.showLogin);
+    app.get("/", homeCtrller.home);
+    app.get("/login", loginCtrller.showLogin);
     app.get("/home", homeCtrller.home);
     app.get("/captchaImg", loginCtrller.captchaImg);
     app.post("/signin", loginCtrller.signIn);

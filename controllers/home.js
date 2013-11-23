@@ -36,8 +36,7 @@
 exports.home = function (req, res, next) {
 
     if (!req.session || !req.session.user) {
-        res.redirect("/");
-        return;
+        return res.redirect("/login");
     }
 
     res.redirect("/game/cqticket");

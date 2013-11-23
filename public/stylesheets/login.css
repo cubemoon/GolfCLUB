@@ -42,7 +42,7 @@ body {
   margin-top: 10px;
 }
 .form-signin .captcha{
-  width: 275px;
+  width: 300px;
   height: 60px;
   cursor: pointer;
 }
@@ -50,4 +50,10 @@ body {
   float: right;
   margin-top: 20px;
   cursor: pointer;
+}
+.margin-topForLoginBtn {
+  margin-top: 20px;
+}
+.margin-topForTipDiv {
+  margin-top: 20px;
 }
