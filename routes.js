@@ -25,10 +25,10 @@
 //mode
 'use strict';
 
-var homeCtrller   = require("./controllers/home");
-var loginCtrller  = require("./controllers/login");
-var logoutCtrller = require("./controllers/logout");
-var errorHandler  = require("./controllers/error");
+var homeCtrller       = require("./controllers/home");
+var loginCtrller      = require("./controllers/login");
+var logoutCtrller     = require("./controllers/logout");
+var errorHandler      = require("./controllers/error");
 
 var cqticketCtrller   = require("./controllers/game/cqticket");
 var array3Ctrller     = require("./controllers/game/array3");
@@ -37,6 +37,7 @@ var shanghaileCtrller = require("./controllers/game/shanghaile");
 var tjticketCtrller   = require("./controllers/game/tjticket");
 var xjticketCtrller   = require("./controllers/game/xjticket");
 
+var profileCtrller    = require("./controllers/app/profile");
 
 
 module.exports = function (app) {
@@ -54,6 +55,8 @@ module.exports = function (app) {
     app.get("/game/xjticket", xjticketCtrller.xjticket);
     app.get("/game/array3", array3Ctrller.array3);
     app.get("/game/shanghaile", shanghaileCtrller.shanghaile);
+
+    app.get("/profile", profileCtrller.showProfile);
 
 
     /*--------------------ajax request-----------------*/
