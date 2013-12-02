@@ -61,6 +61,10 @@ exports.getPlayTypeDetail = function (playTypeId) {
     var detailList = [];
     for (var i = 0; i < TYPEDETAILLIST.length; i++) {
         if (typeId == TYPEDETAILLIST[i].PlayTypeId) {
+            console.log(TYPEDETAILLIST[i].BetPosition);
+            if (!TYPEDETAILLIST[i].BetPosition) {
+                TYPEDETAILLIST[i].BetPosition = "-1";
+            }
             detailList.push(TYPEDETAILLIST[i]);
         }
     }
