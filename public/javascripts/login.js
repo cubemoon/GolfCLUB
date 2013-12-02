@@ -48,7 +48,6 @@ function postAuthUserForm () {
     }
 
     var crypedPwd = CryptoJS.SHA256(pwd) + "";
-    alert(crypedPwd);
 
     $.ajax({
         url     : "/signin",
