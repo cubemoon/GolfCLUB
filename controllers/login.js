@@ -29,6 +29,9 @@
 var captchagen = require('captchagen');
 var check      = require("validator").check;
 var sanitize   = require("validator").sanitize;
+var http       = require("http");
+var EventProxy = require("eventproxy");
+var apiInfo    = require("../docs/apis").APIInfo;
 
 /**
  * show login page
@@ -53,10 +56,6 @@ exports.signIn = function (req, res, next) {
     var userId      = req.body.auth.userId || "";
     var passwd      = req.body.auth.passwd || "";
 
-    console.log(captchaCode);
-    console.log(userId);
-    console.log(passwd);
-
     try {
         check(captchaCode).notEmpty();
         check(userId).notEmpty();
@@ -74,12 +73,25 @@ exports.signIn = function (req, res, next) {
         return res.send("4");
     }
 
-    //simulate user login 
-    var user         = {};
-    user["userId"]   = "ygl_001";
-    req.session.user = user;
+    var ep = EventProxy.create();
 
-    return res.send("1");
+    userId = "golf168";
+    passwd = "golf168";
+    remoteAuth(userId, passwd, function (authReturnData) {
+        if (!authReturnData) {
+            return res.send("2");
+        }
+
+        ep.emitLater("after_auth", authReturnData);
+    });
+
+    ep.once("after_auth", function (authReturnData) {
+        var user         = {};
+        user["userId"]   = "ygl_001";
+        req.session.user = user;
+
+        return res.send("1");
+    });
 };
 
 /**
@@ -102,3 +114,32 @@ exports.captchaImg = function (req, res, next) {
 
     res.send(captcha.buffer());
 };
+
+/**
+ * do remote auth
+ * @param  {string}   uid      user id
+ * @param  {string}   pwd      password
+ * @param  {Function} callback the callback func
+ * @return {null}            
+ */
+function remoteAuth (uid, pwd, callback) {
+    var data = "";
+
+    var options = {
+        hostname  : apiInfo["host"],
+        port      : apiInfo["port"],
+        path      : apiInfo["auth"] + uid + "/" + pwd,
+        method    : 'GET'
+    };
+
+    var req = http.request(options, function (res) {
+        res.on('data',function(chunk){
+            data += chunk;
+        }).on('end', function(){
+            var jsonObj = JSON.parse(JSON.parse(data));
+            callback(jsonObj);
+        });
+    });
+
+    req.end();
+}
