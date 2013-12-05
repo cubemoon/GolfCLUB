@@ -86,9 +86,7 @@ exports.signIn = function (req, res, next) {
     });
 
     ep.once("after_auth", function (authReturnData) {
-        var user         = {};
-        user["userId"]   = "ygl_001";
-        req.session.user = user;
+        req.session.user = authReturnData;
 
         return res.send("1");
     });
