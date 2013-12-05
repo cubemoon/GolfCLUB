@@ -1,8 +1,34 @@
 <div>
     <span class="span_remark">
-        您选择了 <span id="spanBetNum" class="span_highlight">0</span> 注, 总金额: <span id="spanTotalCount" class="span_highlight">0</span> 元,倍数: 
+    您选择了 <span id="spanBetNum" class="span_highlight">0</span> 注, 总金额: <span id="spanTotalCount" class="span_highlight">0</span> 元,倍数: </span>
 </div>
 <input id="inputTime" type="text" class="form-control" placeholder="￥" style="width:43px;" value="2">
 <div>
-元,设定奖金返点：<span id="rebate" class="label label-danger">19580 - 0.00%</span> </span>
+    元,设定奖金返点：<button id="rebate" class="label label-danger" data-toggle="modal" data-target="#myModal">0 - 0.00%</button> 
 </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">奖金返点</h4>
+            </div>
+            <div class="modal-body">
+                <div id="percentDiv">
+                    <span>15%</span>
+                </div>
+                <div class="slider slider-horizontal" id="rebate-slider">
+                </div>
+                <div id="rebeteDiv">
+                    <span>1234</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关 闭</button>
+                <button type="button" class="btn btn-primary">确 定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<input id="hid_fandian" type="hidden" value="<%= locals.fandian %>" />
