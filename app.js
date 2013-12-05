@@ -89,8 +89,8 @@ routes(app);
 //get basic data
 initializer.initAPPBasicData(function() {
     //launch it!
-    app.listen(8080);
-    console.log("the app server run at port :8080");
+    app.listen(8000);
+    console.log("the app server run at port :8000");
 
     module.exports = app;
     // console.log(CATEGORYLIST);
