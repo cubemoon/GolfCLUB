@@ -9,8 +9,6 @@ $(function () {
  * @return {null} 
  */
 function initDefaultBehavior () {
-    highlightDefaultPlayBtns();
-
     $("#div_inputZone").hide();
 
     registerCategoryClick();
@@ -20,15 +18,61 @@ function initDefaultBehavior () {
     registerAddBtnClick();
     registerClearBtnClick();
     registerTimeInputBlurValidate();
+
+    //simulate click first category button
+    $("#category button").first().click();
+
+    initSlider();
+
+}
+
+
+function calcRebets () {
+    
 }
 
 /**
- * high light default(first) play button
+ * init rebet button set it's useable
  * @return {null} 
  */
-function highlightDefaultPlayBtns () {
-    $("#category button").first().removeClass("btn-default").addClass("btn-primary");
-    $("#div_subCategory_container > .isDisplay button").first().removeClass("btn-default").addClass("btn-primary");
+function initRebetButton () {
+    //clear
+    $("#rebate").removeClass("disabledBtn");
+    $("#rebate").removeProp("disabled");
+
+    var selectedCategory = $("#category button[class*=btn-primary]").attr("playid");
+    var selectedSubcategory = $("#sub_category_" + selectedCategory + " button[class*=btn-primary]");
+
+    var jiangjin = selectedSubcategory.attr("jj") || "";
+    var fandian = $("#hid_fandian").val() || "0.00%";
+    $("#rebate").text(jiangjin + " - " + fandian);
+
+    var canChangeStr = selectedSubcategory.attr("canchange") || "false";
+    var scalebase = selectedSubcategory.attr("scalebase");
+    var canChange = (canChangeStr === "true");
+    if (!canChange) {
+        $("#rebate").addClass("disabledBtn");
+        $("#rebate").prop("disabled")="disabled";
+    }
+}
+
+/**
+ * init slider bar
+ * @return {null} 
+ */
+function initSlider () {
+    var percentSpan = $("#percentDiv span");
+    var rebeteSpan  = $("#rebeteDiv span");
+    $('#rebate-slider').slider({
+        min     : 0,
+        max     : 10000,
+        step    : 100,
+        value   : 0,
+        tooltip : "hide"
+    }).on("slide", function (e) {
+        console.log(e.value);
+        rebeteSpan.text(e.value);
+    });
 }
 
 /**
@@ -46,6 +90,7 @@ function registerCategoryClick () {
             $("#div_subCategory_container > .isDisplay").removeClass("isDisplay").addClass("nonDisplay");
             $("#div_subCategory_container div").filter("[playid=" + playId + "]").removeClass("nonDisplay").addClass("isDisplay");
             $("#div_subCategory_container > .isDisplay button").removeClass("btn-primary").addClass("btn-default");
+            //simulate click current category's first subcategory button
             $("#div_subCategory_container > .isDisplay button").first().click();
         });
     });
@@ -69,6 +114,8 @@ function registerSubcategoryClick () {
 
                 var betposStr = currentBtnJqObj.attr("betposition") || "";
                 switchDashboardOrInput(betposStr);
+
+                initRebetButton();
             });
         });
     });
@@ -120,19 +167,6 @@ function registerActionBtnClick () {
  */
 function registerAddBtnClick () {
     $("#btnAdd").click(function () {
-        // var betNum = 1;
-        // var betStr = "";
-        // $("#div_dashborad > div[id^=line_]").not("div:hidden").each(function () {
-        //     var currentShownDiv = $(this);
-        //     var selectedItemsPerLine = currentShownDiv.find("ul > li > a[class^=number]").filter(".selected")
-        //     var selectedNumPerLine = selectedItemsPerLine.length;
-        //     betNum *= selectedNumPerLine;
-        //     selectedItemsPerLine.each(function () {
-        //         var currentItem = $(this);
-        //         betStr += (currentItem.text() + ",");
-        //     });
-        // });
-
         var betInfo = calcBetNum();
 
         var betNum = betInfo.betNum;
@@ -223,9 +257,7 @@ function getBetType () {
  * @return {object} the calc result
  */
 function calcBetNum () {
-
     var currentBetType = getBetType();
-    alert(currentBetType);
 
     if (currentBetType) {
         if (currentBetType === "6") {                       //组选
@@ -237,7 +269,7 @@ function calcBetNum () {
         } else {                                            //直选
             return calcForZhixuan();
         }
-    };
+    }
 }
 
 /**
@@ -245,7 +277,24 @@ function calcBetNum () {
  * @return {object} the calc result
  */
 function calcForLocation () {
-    
+    var betNum = 0;
+    var betStr = "";
+    $("#div_dashborad > div[id^=line_]").not("div:hidden").each(function () {
+        var currentShownDiv = $(this);
+        var selectedItemsPerLine = currentShownDiv.find("ul > li > a[class^=number]").filter(".selected")
+        var selectedNumPerLine = selectedItemsPerLine.length;
+        betNum += selectedNumPerLine;
+        selectedItemsPerLine.each(function () {
+            var currentItem = $(this);
+            betStr += currentItem.text();
+        });
+        betStr += ",";
+    });
+
+    return {
+        betNum  : betNum,
+        betStr  : betStr
+    };
 }
 
 /**
@@ -253,7 +302,20 @@ function calcForLocation () {
  * @return {object} the calc result
  */
 function calcForNonlocation () {
+    var divObj = $("#line_7");
+    var selectedItems = divObj.find("ul > li > a[class^=number]").filter(".selected");
+    var selectedNum = selectedItems.length;
+    var betNum = selectedNum;
+    var betStr = "";
+    selectedItems.each(function () {
+        var currentItem = $(this);
+        betStr += currentItem.text();
+    });
 
+    return {
+        betNum  : betNum,
+        betStr  : betStr
+    };
 }
 
 /**
@@ -286,7 +348,7 @@ function calcForZuxuan () {
     var betStr = "";
     selectedItems.each(function () {
         var currentItem = $(this);
-        betStr += (currentItem.text() + ",");
+        betStr += currentItem.text();
     });
 
     return {
@@ -309,8 +371,9 @@ function calcForZhixuan () {
         betNum *= selectedNumPerLine;
         selectedItemsPerLine.each(function () {
             var currentItem = $(this);
-            betStr += (currentItem.text() + ",");
+            betStr += currentItem.text();
         });
+        betStr += ",";
     });
 
     return {
