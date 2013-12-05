@@ -38,6 +38,7 @@ var tjticketCtrller   = require("./controllers/game/tjticket");
 var xjticketCtrller   = require("./controllers/game/xjticket");
 
 var profileCtrller    = require("./controllers/app/profile");
+var extractCtrller    = require("./controllers/app/extract");
 
 
 module.exports = function (app) {
@@ -57,7 +58,7 @@ module.exports = function (app) {
     app.get("/game/shanghaile", shanghaileCtrller.shanghaile);
 
     app.get("/profile", profileCtrller.showProfile);
-
+    app.get("/extract", extractCtrller.showExtractList);
 
     /*--------------------ajax request-----------------*/
     app.get("/game/cqticket/category", cqticketCtrller.category);
