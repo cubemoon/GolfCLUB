@@ -84,6 +84,21 @@
 }
 /*---------------------------------- dashboard zone end--------------------------*/
 
+/*---------------------------------- model window --------------------------*/
+#percentDiv {
+  float: left;
+  margin-right: 25px;
+}
+#rebate-slider {
+  float: left;
+  width: 400px;
+  margin-left: 20px;
+}
+#rebeteDiv {
+  float: right;
+}
+/*---------------------------------- model window end--------------------------*/
+
 /*---------------------------------- total zone --------------------------*/
 #total {
   width: 100%;
@@ -107,6 +122,11 @@
 #rebate {
   font-weight: bolder;
   font-size: 16px;
+}
+.disabledBtn {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.65;
 }
 /*---------------------------------- total zone end ----------------------*/
 
