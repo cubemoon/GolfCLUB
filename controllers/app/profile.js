@@ -35,5 +35,8 @@
  * @return {null}        
  */
 exports.showProfile = function (req, res, next) {
+    if (!req.session || !req.session.user) {
+        return res.redirect("/login");
+    }
     res.render("app/profile");
 };

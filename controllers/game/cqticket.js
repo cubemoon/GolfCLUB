@@ -64,10 +64,10 @@ exports.cqticket = function (req, res, next) {
     });
 
     ep.once("complete", function() {
-
         res.render("game/cqticket", { 
             categoryList    : categoryList,
-            subCategoryList : subCategoryList
+            subCategoryList : subCategoryList,
+            fandian         : req.session.user["Fandian"]
         });
     });
 };
