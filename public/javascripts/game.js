@@ -21,14 +21,28 @@ function initDefaultBehavior () {
 
     //simulate click first category button
     $("#category button").first().click();
-
-    initSlider();
-
 }
 
+/**
+ * calc the rebets info for the [pop window]
+ * @return {null} 
+ */
+function calcRebetsInfo () {
+    var maxJJ, minJJ, step, jiangjin, scalebase, fandian, $selectedCategory, $selectedSubcategory;
+    $selectedCategory    = $("#category button[class*=btn-primary]").attr("playid");
+    $selectedSubcategory = $("#sub_category_" + $selectedCategory + " button[class*=btn-primary]");
+    scalebase = $selectedSubcategory.attr("scalebase") || "0";
+    fandian   = $("#hid_fandian").val() || "0.00";
 
-function calcRebets () {
-    
+    jiangjin  = $selectedSubcategory.attr("jj") || "0";
+    scalebase = parseFloat(scalebase);
+    jiangjin  = parseFloat(jiangjin);
+    maxJJ     = jiangjin + scalebase * parseFloat(fandian);
+    minJJ     = scalebase * 0.8;
+    step      = scalebase * 0.005;
+
+    //init slider
+    initSlider(minJJ, maxJJ, step, jiangjin, scalebase);
 }
 
 /**
@@ -53,26 +67,51 @@ function initRebetButton () {
     if (!canChange) {
         $("#rebate").addClass("disabledBtn");
         $("#rebate").prop("disabled")="disabled";
+    } else {
+        calcRebetsInfo();
     }
 }
 
 /**
  * init slider bar
+ * @param {Number} min the min value
+ * @param {Number} max the max value
+ * @param {Number} step the step of the slider
+ * @param {Number} currentVal the current value
+ * @param {Number} scalebase scalebase
  * @return {null} 
  */
-function initSlider () {
-    var percentSpan = $("#percentDiv span");
-    var rebeteSpan  = $("#rebeteDiv span");
+function initSlider (min, max, step, currentVal, scalebase) {
+    var $percentSpan, $rebeteSpan;
+    $percentSpan = $("#percentDiv span");
+    $rebeteSpan  = $("#rebeteDiv span");
+    $rebeteSpan.text(currentVal);
+    $percentSpan.text((max - currentVal) / scalebase);
+
     $('#rebate-slider').slider({
-        min     : 0,
-        max     : 10000,
-        step    : 100,
-        value   : 0,
+        min     : min,
+        max     : max,
+        step    : step,
+        value   : currentVal,
         tooltip : "hide"
     }).on("slide", function (e) {
-        console.log(e.value);
-        rebeteSpan.text(e.value);
+        $rebeteSpan.text(e.value);
+        $percentSpan.text((max - e.value) / scalebase);
     });
+
+    //register click event for the "sure" button 
+    registerRebateSureBtnClick();
+}
+
+/**
+ * register click event for the rebateSureBtn
+ * @return {null} 
+ */
+function registerRebateSureBtnClick () {
+    var currentVal, currentPercent;
+    currentVal = $('#rebate-slider').slider("getValue") || "0";
+    currentPercent = 
+    currentVal = parseFloat(currentVal);
 }
 
 /**

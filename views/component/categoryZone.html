@@ -30,7 +30,7 @@
       <%    }           %>
       <%    for(var j = 0; j < subCategoryList[i].length; j++) {  %>
       
-                <button id="sub_category_<%= categoryList[i].PlayId %>_<%= subCategoryList[i][j].PlayInfoId %>" playinfoid="<%= subCategoryList[i][j].PlayInfoId %>" betposition="<%= subCategoryList[i][j].BetPosition %>" type="button" class="btn btn-default btn-sm"><%= subCategoryList[i][j].PlayInfoName %></button>
+                <button id="sub_category_<%= categoryList[i].PlayId %>_<%= subCategoryList[i][j].PlayInfoId %>" playinfoid="<%= subCategoryList[i][j].PlayInfoId %>" betposition="<%= subCategoryList[i][j].BetPosition %>" jj="<%= subCategoryList[i][j].JiangJin %>" canchange="<%= subCategoryList[i][j].CanUserChange %>" scalebase="<%= subCategoryList[i][j].ScaleBase %>" type="button" class="btn btn-default btn-sm"><%= subCategoryList[i][j].PlayInfoName %></button>
       <%    }           %>
             </div>
       <%  }             %>
