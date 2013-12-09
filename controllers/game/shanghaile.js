@@ -67,7 +67,8 @@ exports.shanghaile = function (req, res, next) {
 
         res.render("game/shanghaile", { 
             categoryList    : categoryList,
-            subCategoryList : subCategoryList
+            subCategoryList : subCategoryList,
+            fandian         : req.session.user["Fandian"]
         });
     });
 

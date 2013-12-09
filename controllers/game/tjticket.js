@@ -67,7 +67,8 @@ exports.tjticket = function (req, res, next) {
 
         res.render("game/tjticket", { 
             categoryList    : categoryList,
-            subCategoryList : subCategoryList
+            subCategoryList : subCategoryList,
+            fandian         : req.session.user["Fandian"]
         });
     });
 };

@@ -67,7 +67,8 @@ exports.fucai3D = function (req, res, next) {
 
         res.render("game/fucai3D", { 
             categoryList    : categoryList,
-            subCategoryList : subCategoryList
+            subCategoryList : subCategoryList,
+            fandian         : req.session.user["Fandian"]
         });
     });
 

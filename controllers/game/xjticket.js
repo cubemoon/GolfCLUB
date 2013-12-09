@@ -66,7 +66,8 @@ exports.xjticket = function (req, res, next) {
     ep.once("complete", function() {
         res.render("game/xjticket", { 
             categoryList    : categoryList,
-            subCategoryList : subCategoryList
+            subCategoryList : subCategoryList,
+            fandian         : req.session.user["Fandian"]
         });
     });
 };

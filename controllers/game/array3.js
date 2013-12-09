@@ -67,7 +67,8 @@ exports.array3 = function (req, res, next) {
 
         res.render("game/array3", { 
             categoryList    : categoryList,
-            subCategoryList : subCategoryList
+            subCategoryList : subCategoryList,
+            fandian         : req.session.user["Fandian"]
         });
     });
 };
