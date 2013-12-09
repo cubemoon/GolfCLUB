@@ -87,15 +87,21 @@
 /*---------------------------------- model window --------------------------*/
 #percentDiv {
   float: left;
-  margin-right: 25px;
+  text-align: right;
+  width: 50px;
 }
-#rebate-slider {
+#sliderContainer {
   float: left;
   width: 400px;
   margin-left: 20px;
 }
+#rebate-slider {
+  width: 400px;
+}
 #rebeteDiv {
   float: right;
+  width: 50px;
+  text-align: left;
 }
 /*---------------------------------- model window end--------------------------*/
 
@@ -106,7 +112,7 @@
   height: 40px;
   font-size: 16px;
   padding-top: 10px;
-  padding-left: 120px;
+  margin-left: 120px;
 }
 #total > div {
   float: left;
