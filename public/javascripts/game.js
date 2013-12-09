@@ -41,6 +41,7 @@ function calcRebetsInfo () {
     minJJ     = scalebase * 0.8;
     step      = scalebase * 0.005;
 
+    // console.log("max:" + maxJJ + "\t step:" + step +"\t jiangjin:" + jiangjin + "\t fandian:" + fandian);
     //init slider
     initSlider(minJJ, maxJJ, step, jiangjin, scalebase);
 }
@@ -95,8 +96,19 @@ function initSlider (min, max, step, currentVal, scalebase) {
         value   : currentVal,
         tooltip : "hide"
     }).on("slide", function (e) {
-        $rebeteSpan.text(e.value);
-        $percentSpan.text((max - e.value) / scalebase);
+        var val = e.value;
+        if (val > max) {
+            $(this).slider("setValue", max);
+            val = max;
+        }
+
+        if (val < min) {
+            $(this).slider("setValue", min);
+            val = min;
+        }
+
+        $rebeteSpan.text(val);
+        $percentSpan.text((max - val) / scalebase);
     });
 
     //register click event for the "sure" button 
@@ -108,10 +120,13 @@ function initSlider (min, max, step, currentVal, scalebase) {
  * @return {null} 
  */
 function registerRebateSureBtnClick () {
-    var currentVal, currentPercent;
-    currentVal = $('#rebate-slider').slider("getValue") || "0";
-    currentPercent = 
-    currentVal = parseFloat(currentVal);
+    var currentVal, currentPercent, resultStr;
+    $("#rebateSureBtn").click(function () {
+        currentVal = $('#rebate-slider').slider("getValue");
+        currentPercent = $("#percentDiv").text() || "0.00";
+        resultStr = String(currentVal) + " - " + currentPercent;
+        $("#rebate").text(resultStr);
+    });
 }
 
 /**
