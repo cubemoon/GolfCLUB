@@ -356,6 +356,17 @@
 	};
 
 	$.fn.slider = function ( option, val ) {
+		if (typeof option == 'string' && option === 'getValue') {
+			var $this = $(this),
+				data = $this.data('slider'),
+				options = typeof option === 'object' && option;
+			if (!data)  {
+				$this.data('slider', (data = new Slider(this, $.extend({}, $.fn.slider.defaults,options))));
+			}
+
+			return data[option](val);
+		}
+
 		return this.each(function () {
 			var $this = $(this),
 				data = $this.data('slider'),
@@ -363,10 +374,10 @@
 			if (!data)  {
 				$this.data('slider', (data = new Slider(this, $.extend({}, $.fn.slider.defaults,options))));
 			}
-			if (typeof option == 'string') {
+			if (typeof option == 'string' && option !== 'getValue') {
 				data[option](val);
 			}
-		})
+		});
 	};
 
 	$.fn.slider.defaults = {
